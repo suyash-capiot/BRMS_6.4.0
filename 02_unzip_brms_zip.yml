@@ -3,6 +3,7 @@
   hosts: all
   become: true
   vars:
+    host_user: suyash
     target_user: brms
   tasks:
     - name: Change Permisssion of EAP-6.4.0.zip
