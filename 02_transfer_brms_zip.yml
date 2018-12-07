@@ -1,9 +1,0 @@
--
-  name: Copy BRMS ZIP on Remote Server
-  hosts: all
-  become: true
-  vars:
-    host_user: suyash
-  tasks:
-    - name: Zip BRMS Data
-      shell: /home/{{ host_user }}/transferBRMS.sh

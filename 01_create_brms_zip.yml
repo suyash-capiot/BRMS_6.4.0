@@ -4,6 +4,7 @@
   become: true
   vars:
     host_user: suyash
+    target_user: brms
   tasks:
     - name: Zip BRMS Data
       archive:
@@ -16,3 +17,14 @@
         dest: /home/{{ host_user }}/EAP-6.4.0.zip
         owner: "{{ host_user }}"
         group: "{{ host_user }}"
+
+    - name: Create bash Script for SCP transfer
+      copy:
+        content: "scp /home/{{ host_user }}/EAP-6.4.0.zip root@192.168.56.60:/home/{{ target_user }}"
+        dest: "/home/{{ host_user }}/transferBRMS.sh"
+        owner: "{{ host_user }}"
+        group: "{{ host_user }}"
+        mode: 0755
+
+    - name: Execute transferBRMS bash script
+      shell: /home/{{ host_user }}/transferBRMS.sh
