@@ -7,10 +7,10 @@
   tasks:
     - name: Change Permisssion of EAP-6.4.0.zip
       file:
-        path=/home/{{ target_user }}/{{ item.dir }}
-        owner="{{ target_user }}"
-        group="{{ target_user }}"
-        mode=0777
+        path = /home/{{ target_user }}/{{ item.dir }}
+        owner = "{{ target_user }}"
+        group = "{{ target_user }}"
+        mode = 0777
       with_items:
         - { dir: EAP-6.4.0.zip }
 
@@ -24,13 +24,22 @@
 
     - name: Change Permisssion of Directory
       file:
-        path=/home/{{ target_user }}/{{ item.dir }}
-        owner="{{ target_user }}"
-        group="{{ target_user }}"
-        recurse=yes
+        path = /home/{{ target_user }}/{{ item.dir }}
+        owner = "{{ target_user }}"
+        group = "{{ target_user }}"
+        recurse = yes
       with_items:
         - { dir: EAP-6.4.0 }
         - { dir: repositories }
         - { dir: .m2 }
         - { dir: .niogit }
         - { dir: .index }
+        
+    - name: Replace User and IP-Address
+      shell:
+        find /home/{{ target_user }} -type f -exec sed -i 's/{{ item }}/g' {} \;
+      with_items:
+        - \home\/{{ host_user }}/\home\/{{ target_user }}
+        - 192.168.56.30/192.168.56.60
+        
+    - shell: nohup su - {{ target_user }} -c /home/{{ target_user }}/EAP-6.4.0/bin/standalone.sh &

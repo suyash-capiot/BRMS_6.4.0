@@ -15,6 +15,7 @@
           - /home/{{ host_user }}/.niogit
           - /home/{{ host_user }}/.index
         dest: /home/{{ host_user }}/EAP-6.4.0.zip
+        format: zip
         owner: "{{ host_user }}"
         group: "{{ host_user }}"
 
