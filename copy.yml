@@ -1,0 +1,14 @@
+-
+  name: Copy and Unzip BRMS data on Target Server
+  hosts: all
+  become: true
+  vars:
+    host_user: suyash
+    target_user: brms
+  tasks:
+    - name: Copy BRMS Data
+      copy:
+        src: /home/{{ host_user }}/transferBRMS.sh
+        dest: /home/{{ target_user }}/
+        owner: "{{ target_user }}"
+        group: "{{ target_user }}"
