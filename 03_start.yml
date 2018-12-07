@@ -7,4 +7,4 @@
     target_user: brms
   tasks:
     - shell: su - {{ target_user }} -c /home/{{ target_user }}/EAP-6.4.0/bin/standalone.sh
-       remote_src: yes
+       remote_src = yes
