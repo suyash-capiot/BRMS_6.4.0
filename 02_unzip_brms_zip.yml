@@ -1,0 +1,14 @@
+-
+  name: Unzip BRMS data on Target Server
+  hosts: all
+  become: true
+  vars:
+    target_user: brms
+  tasks:
+    - name: Change Permisssion of EAP-6.4.0.zip
+      file:
+        path=/home/{{ target_user }}/{{ item.dir }}
+        owner="{{ target_user }}"
+        group="{{ target_user }}"
+      with_items:
+        - { dir: EAP-6.4.0.zip }
