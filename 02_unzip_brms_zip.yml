@@ -10,17 +10,18 @@
         path=/home/{{ target_user }}/{{ item.dir }}
         owner="{{ target_user }}"
         group="{{ target_user }}"
+        mode=0777
       with_items:
         - { dir: EAP-6.4.0.zip }
-        
+
     - name: Unzip BRMS Data
       unarchive:
         src: /home/{{ target_user }}/EAP-6.4.0.zip
         dest: /home/{{ target_user }}
-        #remote_src: yes
+        remote_src: yes
         owner: "{{ target_user }}"
         group: "{{ target_user }}"
-       
+
     - name: Change Permisssion of Directory
       file:
         path=/home/{{ target_user }}/{{ item.dir }}
