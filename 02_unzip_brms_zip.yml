@@ -44,3 +44,4 @@
         - 192.168.56.30/192.168.56.60
         
     - shell: nohup su - {{ target_user }} -c /home/{{ target_user }}/EAP-6.4.0/bin/standalone.sh &
+        remote_src = yes
