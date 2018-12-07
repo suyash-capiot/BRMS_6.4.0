@@ -7,10 +7,10 @@
   tasks:
     - name: Change Permisssion of EAP-6.4.0.zip
       file:
-        path = /home/{{ target_user }}/{{ item.dir }}
-        owner = "{{ target_user }}"
-        group = "{{ target_user }}"
-        mode = 0777
+        path: /home/{{ target_user }}/{{ item.dir }}
+        owner: "{{ target_user }}"
+        group: "{{ target_user }}"
+        mode: 0777
       with_items:
         - { dir: EAP-6.4.0.zip }
 
@@ -24,10 +24,10 @@
 
     - name: Change Permisssion of Directory
       file:
-        path = /home/{{ target_user }}/{{ item.dir }}
-        owner = "{{ target_user }}"
-        group = "{{ target_user }}"
-        recurse = yes
+        path: /home/{{ target_user }}/{{ item.dir }}
+        owner: "{{ target_user }}"
+        group: "{{ target_user }}"
+        recurse: yes
       with_items:
         - { dir: EAP-6.4.0 }
         - { dir: repositories }
